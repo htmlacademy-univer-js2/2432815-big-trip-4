@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 const getRandomPositiveInteger = (min, max) => {
-=======
-export const getRandomPositiveInteger = (min, max) => {
->>>>>>> origin
+
   if (min < max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -10,7 +8,11 @@ export const getRandomPositiveInteger = (min, max) => {
   }
 };
 
-<<<<<<< HEAD
+
+const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
+
+const isEscKeyDown = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
 const updateItem = (items, update) => {
   const index = items.findIndex((item) => item.id === update.id);
 
@@ -25,13 +27,5 @@ const updateItem = (items, update) => {
   ];
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
-
-const isEscKeyDown = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
-
 export { getRandomPositiveInteger, updateItem, getRandomArrayElement, isEscKeyDown };
-=======
-export const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-export const isEscKeyDown = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
->>>>>>> origin
