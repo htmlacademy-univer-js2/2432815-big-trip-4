@@ -33,3 +33,4 @@ const FilterType = {
 };
 
 export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice, FilterType };
+

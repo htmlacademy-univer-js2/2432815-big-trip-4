@@ -1,4 +1,5 @@
 import AbstractView from '../framework/view/abstract-view.js';
+
 import dayjs from 'dayjs';
 
 const createWaypointTemplate = (point) => {
@@ -43,6 +44,7 @@ const createWaypointTemplate = (point) => {
     </div>
   </li>`;
 };
+
 
 export default class WaypointView extends AbstractView {
 

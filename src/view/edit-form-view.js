@@ -141,6 +141,7 @@ const createEditFormTemplate = (point) => {
 </li>`;
 };
 
+
 export default class EditFormView extends AbstractView {
 
   #point = null;
