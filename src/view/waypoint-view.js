@@ -1,4 +1,4 @@
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import dayjs from 'dayjs';
 
 const createWaypointTemplate = (point) => {
@@ -7,7 +7,7 @@ const createWaypointTemplate = (point) => {
 
   return `<li class="trip-events__item">
     <div class="event">
-      <time class="event__date" datetime="2019-03-18">${getDate(point['dateTo'])}</time>
+      <time class="event__date" datetime="2019-03-18">${getDate(point['dateFrom'])}</time>
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${point['type']}.png" alt="Event type icon">
       </div>
@@ -44,24 +44,37 @@ const createWaypointTemplate = (point) => {
   </li>`;
 };
 
-export default class WaypointView {
+export default class WaypointView extends AbstractView {
+
+  #point = null;
+
   constructor(point) {
-    this.point = point;
+    super();
+    this.#point = point;
   }
 
-  getTemplate() {
-    return createWaypointTemplate(this.point);
+  get template() {
+    return createWaypointTemplate(this.#point);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
+  setEditClickHandler = (callback) => {
+    this._callback.editClick = callback;
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
+  };
 
-    return this.element;
-  }
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.editClick();
+  };
 
-  removeElement() {
-    this.element = null;
-  }
+  setFavoriteClickHandler = (callback) => {
+    this._callback.favoriteClick = callback;
+    this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
+  };
+
+  #favoriteClickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.favoriteClick();
+  };
+
 }
