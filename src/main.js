@@ -1,3 +1,4 @@
+
 import { render } from './render.js';
 import TripPresenter from './presenter/presenter.js';
 import FilterView from './view/filter-view.js';
