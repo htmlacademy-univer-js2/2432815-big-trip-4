@@ -42,13 +42,16 @@ export default class TripPresenter {
   }
 
   #renderSort = () => {
+
     sorting[SortType.DAY](this.#tripPoints);
+
     render(this.#sortComponent, this.#tripContainer, RenderPosition.AFTERBEGIN);
     this.#sortComponent.setSortTypeChangeHandler(this.#handleSortTypeChange);
   };
 
   #renderNoPoints = () => {
     render(this.#noPointComponent, this.#tripContainer, RenderPosition.AFTERBEGIN);
+
   };
 
   #renderPoints = (from, to) => {
@@ -58,7 +61,9 @@ export default class TripPresenter {
   };
 
   #renderPointList = () => {
+
     render(this.#pointsListComponent, this.#tripContainer);
+
     this.#renderPoints(0, this.#tripPoints.length);
   };
 
@@ -84,6 +89,7 @@ export default class TripPresenter {
   };
 
   #sortPoints = (sortType) => {
+
     sorting[sortType](this.#tripPoints);
 
     this.#currentSortType = sortType;
@@ -98,5 +104,6 @@ export default class TripPresenter {
     this.#clearEventsList();
     this.#renderPointList();
   };
+
 
 }
