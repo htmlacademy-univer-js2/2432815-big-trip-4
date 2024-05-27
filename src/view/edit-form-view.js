@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import AbstractView from '../framework/view/abstract-view.js';
+=======
+
+import { createElement } from '../render.js';
+
+>>>>>>> origin
 import dayjs from 'dayjs';
 
 const createEditFormTemplate = (point) => {
@@ -141,6 +147,7 @@ const createEditFormTemplate = (point) => {
 </li>`;
 };
 
+<<<<<<< HEAD
 export default class EditFormView extends AbstractView {
 
   #point = null;
@@ -173,5 +180,28 @@ export default class EditFormView extends AbstractView {
     evt.preventDefault();
     this._callback.formSubmit(this.#point);
   };
+=======
+
+export default class EditFormView {
+  constructor(point) {
+    this.point = point;
+  }
+
+  getTemplate() {
+    return createEditFormTemplate(this.point);
+  }
+
+  getElement() {
+    if (!this.element) {
+      this.element = createElement(this.getTemplate());
+    }
+
+    return this.element;
+  }
+
+  removeElement() {
+    this.element = null;
+  }
+>>>>>>> origin
 
 }

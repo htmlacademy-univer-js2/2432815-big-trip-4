@@ -26,6 +26,7 @@ const tripPrice = {
   MAX: 1500
 };
 
+<<<<<<< HEAD
 const FilterType = {
   EVERYTHING: 'everything',
   FUTURE: 'future',
@@ -39,3 +40,8 @@ const SortType = {
 };
 
 export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice, FilterType, SortType };
+=======
+
+export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice };
+
+>>>>>>> origin

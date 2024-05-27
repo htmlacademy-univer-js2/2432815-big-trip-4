@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import AbstractView from '../framework/view/abstract-view.js';
+=======
+
+import { createElement } from '../render.js';
+
+>>>>>>> origin
 import dayjs from 'dayjs';
 
 const createWaypointTemplate = (point) => {
@@ -7,7 +13,11 @@ const createWaypointTemplate = (point) => {
 
   return `<li class="trip-events__item">
     <div class="event">
+<<<<<<< HEAD
       <time class="event__date" datetime="2019-03-18">${getDate(point['dateFrom'])}</time>
+=======
+      <time class="event__date" datetime="2019-03-18">${getDate(point['dateTo'])}</time>
+>>>>>>> origin
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${point['type']}.png" alt="Event type icon">
       </div>
@@ -44,6 +54,7 @@ const createWaypointTemplate = (point) => {
   </li>`;
 };
 
+<<<<<<< HEAD
 export default class WaypointView extends AbstractView {
 
   #point = null;
@@ -76,5 +87,27 @@ export default class WaypointView extends AbstractView {
     evt.preventDefault();
     this._callback.favoriteClick();
   };
+=======
+export default class WaypointView {
+  constructor(point) {
+    this.point = point;
+  }
+
+  getTemplate() {
+    return createWaypointTemplate(this.point);
+  }
+
+  getElement() {
+    if (!this.element) {
+      this.element = createElement(this.getTemplate());
+    }
+
+    return this.element;
+  }
+
+  removeElement() {
+    this.element = null;
+  }
+>>>>>>> origin
 
 }

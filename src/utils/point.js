@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 const isPointPast = (pointDate) => dayjs(pointDate.dateFrom).isBefore(dayjs());
 const isPointFuture = (pointDate) => dayjs(pointDate.dateFrom).isAfter(dayjs());
 
+<<<<<<< HEAD
 
 const sortPointsDayUp = (pointA, pointB) => dayjs(pointA.dateFrom).diff(dayjs(pointB.dateFrom));
 
@@ -16,3 +17,6 @@ const sortPointsTimeUp = (pointA, pointB) => {
 const sortPointsPriceUp = (pointA, pointB) => pointA.basePrice - pointB.basePrice;
 
 export { isPointFuture, isPointPast, sortPointsDayUp, sortPointsTimeUp, sortPointsPriceUp };
+=======
+export { isPointFuture, isPointPast };
+>>>>>>> origin
