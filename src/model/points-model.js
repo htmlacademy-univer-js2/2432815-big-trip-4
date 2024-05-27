@@ -1,4 +1,3 @@
-
 export default class pointsModel {
   #points = [];
   #destinations = [];
@@ -21,5 +20,4 @@ export default class pointsModel {
   get offers() {
     return this.#offers;
   }
-
 }

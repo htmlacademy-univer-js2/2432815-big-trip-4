@@ -7,7 +7,6 @@ const createSortTemplate = () => (
       <input id="sort-${SortType.DAY}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort"
       value="sort-${SortType.DAY}" data-sort-type="${SortType.DAY}" checked>
         <label class="trip-sort__btn" for="sort-${SortType.DAY}">Day</label>
-
     </div>
     <div class="trip-sort__item  trip-sort__item--event">
       <input id="sort-event" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-event" disabled>
@@ -46,4 +45,5 @@ export default class SortView extends AbstractView {
 
     this._callback.sortTypeChange(evt.target.dataset.sortType);
   };
+
 }
