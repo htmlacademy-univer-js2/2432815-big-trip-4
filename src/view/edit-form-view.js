@@ -1,3 +1,4 @@
+
 import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
 import { POINT_TYPES } from '../mock/constants.js';
 import { getDateTime } from '../utils/point.js';

@@ -25,3 +25,4 @@ const updateItem = (items, update) => {
 };
 
 export { getRandomPositiveInteger, updateItem, getRandomArrayElement, isEscKeyDown };
+

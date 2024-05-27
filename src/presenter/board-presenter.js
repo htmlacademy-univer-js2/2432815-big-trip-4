@@ -42,6 +42,7 @@ export default class TripPresenter {
   }
 
   #renderSort = () => {
+
     sorting[SortType.DAY](this.#tripPoints);
     render(this.#sortComponent, this.#tripContainer, RenderPosition.AFTERBEGIN);
     this.#sortComponent.setSortTypeChangeHandler(this.#handleSortTypeChange);
@@ -85,7 +86,6 @@ export default class TripPresenter {
 
   #sortPoints = (sortType) => {
     sorting[sortType](this.#tripPoints);
-
     this.#currentSortType = sortType;
   };
 
@@ -98,5 +98,4 @@ export default class TripPresenter {
     this.#clearEventsList();
     this.#renderPointList();
   };
-
 }

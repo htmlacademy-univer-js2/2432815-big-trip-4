@@ -32,11 +32,13 @@ const getOffersByType = () => Array.from({ length: POINT_TYPES.length }).map((va
 
 const createPoint = () => {
   const offerIds = getRandomArrayElement(getOffersByType()).offers.map((offer) => offer.id);
+
   const randomDates = createRandomDates();
   return {
     basePrice: getRandomPositiveInteger(tripPrice.MIN, tripPrice.MAX),
     dateFrom: randomDates.dateFrom,
     dateTo: randomDates.dateTo,
+
     destinationId: getRandomArrayElement(getDestinations()).id,
     id: nanoid(),
     isFavorite: Boolean(getRandomPositiveInteger(0, 1)),
