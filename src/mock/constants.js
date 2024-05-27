@@ -21,7 +21,6 @@ const offerPrice = {
   MAX: 50
 };
 
-
 const picturesCount = {
   MIN: 1,
   MAX: 4
@@ -32,7 +31,6 @@ const tripPrice = {
   MAX: 1500
 };
 
-
 const FilterType = {
   EVERYTHING: 'everything',
   FUTURE: 'future',
@@ -41,14 +39,10 @@ const FilterType = {
 
 const SortType = {
   DAY: 'day',
-
   EVENT: 'event',
   TIME: 'time',
   PRICE: 'price',
   OFFER: 'offer',
 };
 
-const maxPoints = 8;
-
-export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice, FilterType, SortType, picturesCount, maxPoints };
-
+export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice, FilterType, SortType, picturesCount };

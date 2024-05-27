@@ -30,7 +30,6 @@
     "webpack-cli": "4.10.0",
     "webpack-dev-server": "4.4.0",
     "nanoid": "3.3.2"
-
   },
   "engines": {
     "node": "16"
