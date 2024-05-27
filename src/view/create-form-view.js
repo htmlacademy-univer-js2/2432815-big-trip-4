@@ -1,7 +1,4 @@
-
 import AbstractView from '../framework/view/abstract-view.js';
-
-
 
 const createCreateFormTemplate = () => (
   `<li class="trip-events__item">
@@ -151,6 +148,5 @@ export default class CreateFormView extends AbstractView {
 
   get template() {
     return createCreateFormTemplate();
-
   }
 }
