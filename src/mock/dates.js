@@ -1,6 +1,11 @@
 import dayjs from 'dayjs';
+<<<<<<< HEAD
 import { getRandomPositiveInteger } from '../utils/common';
+=======
 
+import { getRandomPositiveInteger } from '../utils';
+
+>>>>>>> origin
 
 const getRandomDate = () => dayjs()
   .add(getRandomPositiveInteger(1, 7), 'day')
