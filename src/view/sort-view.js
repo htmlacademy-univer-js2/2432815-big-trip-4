@@ -1,4 +1,3 @@
-
 import AbstractView from '../framework/view/abstract-view.js';
 
 const createSortTemplate = () => (
@@ -25,7 +24,6 @@ const createSortTemplate = () => (
     </div>
   </form>`
 );
-
 
 export default class SortView extends AbstractView {
 

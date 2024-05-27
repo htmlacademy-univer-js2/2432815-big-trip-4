@@ -5,7 +5,8 @@ import EditFormView from '../view/edit-form-view.js';
 import WaypointView from '../view/waypoint-view.js';
 import TripEventsView from '../view/trip-events-view.js';
 import NoPointView from '../view/no-point-view.js';
-import { isEscKeyDown } from '../utils.js';
+import { isEscKeyDown } from '../utils/common.js';
+
 
 
 export default class TripPresenter {
@@ -64,10 +65,6 @@ export default class TripPresenter {
       document.addEventListener('keydown', onEscKeyDown);
     });
 
-    // pointEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
-    //   replaceFormToPoint();
-    //   document.removeEventListener('keydown', onEscKeyDown);
-    // });
 
     pointEditComponent.setCloseClickHandler(() => {
       replaceFormToPoint();
