@@ -1,4 +1,6 @@
+
 import { createElement } from '../render.js';
+
 import dayjs from 'dayjs';
 
 const createEditFormTemplate = (point) => {
@@ -141,6 +143,7 @@ const createEditFormTemplate = (point) => {
 </li>`;
 };
 
+
 export default class EditFormView {
   constructor(point) {
     this.point = point;
@@ -161,4 +164,5 @@ export default class EditFormView {
   removeElement() {
     this.element = null;
   }
+
 }

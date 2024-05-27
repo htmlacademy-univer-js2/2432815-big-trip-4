@@ -1,4 +1,6 @@
+
 import { createElement } from '../render.js';
+
 
 const createCreateFormTemplate = () => (
   `<li class="trip-events__item">
@@ -144,6 +146,7 @@ const createCreateFormTemplate = () => (
 </li>`
 );
 
+
 export default class CreateFormView {
   getTemplate() {
     return createCreateFormTemplate;
@@ -159,5 +162,6 @@ export default class CreateFormView {
 
   removeElement() {
     this.element = null;
+
   }
 }

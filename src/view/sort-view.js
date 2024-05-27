@@ -1,4 +1,6 @@
+
 import { createElement } from '../render.js';
+
 
 const createSortTemplate = () => (
   `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
@@ -25,6 +27,7 @@ const createSortTemplate = () => (
   </form>`
 );
 
+
 export default class SortView {
   getTemplate() {
     return createSortTemplate;
@@ -41,4 +44,5 @@ export default class SortView {
   removeElement() {
     this.element = null;
   }
+
 }

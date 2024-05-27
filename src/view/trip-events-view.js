@@ -1,4 +1,6 @@
+
 import { createElement } from '../render.js';
+
 
 const createTripEventsTemplate = () => (
   `<ul class="trip-events__list">
@@ -20,5 +22,6 @@ export default class TripEventsView {
 
   removeElement() {
     this.element = null;
+
   }
 }

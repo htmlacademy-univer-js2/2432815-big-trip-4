@@ -1,4 +1,6 @@
+
 import { createElement } from '../render.js';
+
 import dayjs from 'dayjs';
 
 const createWaypointTemplate = (point) => {
@@ -64,4 +66,5 @@ export default class WaypointView {
   removeElement() {
     this.element = null;
   }
+
 }

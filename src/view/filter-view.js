@@ -1,3 +1,4 @@
+
 import { createElement } from '../render.js';
 
 const createFilterTemplate = () => (
@@ -33,5 +34,6 @@ export default class FilterView {
 
   removeElement() {
     this.element = null;
+
   }
 }

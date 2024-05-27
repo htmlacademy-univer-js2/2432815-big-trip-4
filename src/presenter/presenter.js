@@ -1,8 +1,11 @@
+
 import { render } from '../render.js';
+
 import SortView from '../view/sort-view.js';
 import EditFormView from '../view/edit-form-view.js';
 import WaypointView from '../view/waypoint-view.js';
 import TripEventsView from '../view/trip-events-view.js';
+
 
 export default class TripPresenter {
   constructor() {
@@ -22,4 +25,5 @@ export default class TripPresenter {
       render(new WaypointView(this.tripPoints[i]), this.eventsList.getElement());
     }
   }
+
 }
