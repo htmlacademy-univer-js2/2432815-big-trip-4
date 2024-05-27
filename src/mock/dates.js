@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
+
 import { getRandomPositiveInteger } from '../utils/common';
+
 
 const getRandomDate = () => dayjs()
   .add(getRandomPositiveInteger(1, 7), 'day')

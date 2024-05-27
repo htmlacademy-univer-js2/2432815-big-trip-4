@@ -1,3 +1,4 @@
+
 import AbstractView from '../framework/view/abstract-view.js';
 import dayjs from 'dayjs';
 
@@ -21,6 +22,7 @@ const createWaypointTemplate = (point, destinations, offers) => {
 
   return `<li class="trip-events__item">
     <div class="event">
+
       <time class="event__date" datetime="${dateFrom}">${getDate(dateFrom)}</time>
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event ${type} icon">

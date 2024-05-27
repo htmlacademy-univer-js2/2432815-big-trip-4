@@ -8,17 +8,20 @@ import { SortType } from '../mock/constants.js';
 import { sorting } from '../utils/sorting.js';
 
 
+
 export default class TripPresenter {
   #tripContainer = null;
   #pointsModel = null;
   #tripPoints = [];
 
   #sourcedBoardPoints = [];
+
   #currentSortType = SortType.DAY;
 
   #pointsListComponent = new TripEventsView();
   #sortComponent = new SortView();
   #noPointComponent = new NoPointView();
+
 
   #pointPresenter = new Map();
 
@@ -42,13 +45,16 @@ export default class TripPresenter {
   }
 
   #renderSort = () => {
+
     sorting[SortType.DAY](this.#tripPoints);
+
     render(this.#sortComponent, this.#tripContainer, RenderPosition.AFTERBEGIN);
     this.#sortComponent.setSortTypeChangeHandler(this.#handleSortTypeChange);
   };
 
   #renderNoPoints = () => {
     render(this.#noPointComponent, this.#tripContainer, RenderPosition.AFTERBEGIN);
+
   };
 
   #renderPoints = (from, to) => {
@@ -58,12 +64,16 @@ export default class TripPresenter {
   };
 
   #renderPointList = () => {
+
     render(this.#pointsListComponent, this.#tripContainer);
+
     this.#renderPoints(0, this.#tripPoints.length);
   };
 
   #renderPoint = (point) => {
+
     const pointPresenter = new PointPresenter(this.#pointsListComponent.element, this.#pointsModel, this.#handlePointChange, this.#handleModeChange);
+
     pointPresenter.init(point);
     this.#pointPresenter.set(point.id, pointPresenter);
   };
@@ -84,7 +94,9 @@ export default class TripPresenter {
   };
 
   #sortPoints = (sortType) => {
+
     sorting[sortType](this.#tripPoints);
+
 
     this.#currentSortType = sortType;
   };
@@ -98,5 +110,6 @@ export default class TripPresenter {
     this.#clearEventsList();
     this.#renderPointList();
   };
+
 
 }
