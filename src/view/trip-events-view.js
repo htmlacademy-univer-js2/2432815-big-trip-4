@@ -6,7 +6,6 @@ const createTripEventsTemplate = () => (
   </ul>`
 );
 
-
 export default class TripEventsView extends AbstractView {
 
   get template() {

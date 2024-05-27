@@ -1,4 +1,3 @@
-
 import { render, replace } from '../framework/render.js';
 import SortView from '../view/sort-view.js';
 import EditFormView from '../view/edit-form-view.js';
@@ -6,7 +5,6 @@ import WaypointView from '../view/waypoint-view.js';
 import TripEventsView from '../view/trip-events-view.js';
 import NoPointView from '../view/no-point-view.js';
 import { isEscKeyDown } from '../utils/common.js';
-
 
 
 export default class TripPresenter {
@@ -64,7 +62,6 @@ export default class TripPresenter {
       replacePointToForm();
       document.addEventListener('keydown', onEscKeyDown);
     });
-
 
     pointEditComponent.setCloseClickHandler(() => {
       replaceFormToPoint();

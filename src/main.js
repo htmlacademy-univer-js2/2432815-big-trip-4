@@ -11,7 +11,6 @@ const siteHeaderElement = document.querySelector('.trip-main');
 const pointModel = new PointsModel();
 const tripPresenter = new TripPresenter(siteMainElement.querySelector('.trip-events'), pointModel);
 
-
 const filters = generateFilter(pointModel.point);
 
 render(new FilterView(filters), siteHeaderElement.querySelector('.trip-controls__filters'));
