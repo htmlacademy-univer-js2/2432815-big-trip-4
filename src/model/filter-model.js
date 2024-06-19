@@ -1,5 +1,5 @@
 import Observable from '../framework/observable.js';
-import { FilterType } from '../mock/constants.js';
+import { FilterType } from '../mock/const.js';
 
 export default class FilterModel extends Observable {
   #filter = FilterType.EVERYTHING;
@@ -8,8 +8,8 @@ export default class FilterModel extends Observable {
     return this.#filter;
   }
 
-  setFilter = (updateType, filter) => {
+  setFilter(updateType, filter) {
     this.#filter = filter;
     this._notify(updateType, filter);
-  };
+  }
 }
