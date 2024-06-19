@@ -7,7 +7,7 @@ import he from 'he';
 
 function createTypesElement(currentType, isDisabled) {
   const result = EVENT_TYPES.map((eventType) => `<div class="event__type-item">
-              <input id="event-type-${eventType.toLowerCase()}-1" class="event__${eventType.toLowerCase()}-input  visually-hidden" type="radio" name="event-type" value="${eventType.toLowerCase()}" ${currentType === eventType ? 'checked' : ''} ${isDisabled ? 'disabled' : ''}>
+              <input id="event-type-${eventType.toLowerCase()}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${eventType.toLowerCase()}" ${currentType === eventType.toLowerCase() ? 'checked' : ''} ${isDisabled ? 'disabled' : ''}>
               <label class="event__type-label  event__type-label--${eventType.toLowerCase()}" for="event-type-${eventType.toLowerCase()}-1">${eventType}</label>
             </div>`);
   return `<fieldset class="event__type-group">
