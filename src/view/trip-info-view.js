@@ -1,85 +1,47 @@
+import { DESTINATIONS_LENGTH_BORDER } from '../mock/const.js';
 import AbstractView from '../framework/view/abstract-view.js';
-import { getDate } from '../utils/point.js';
+import { getPointsDataRange, getTripPrice, getTripRoute } from '../utils/trip-info.js';
 
-const renderRouteTrip = (points, destinations) => {
-  if (points.length === 0) {
-    return '';
-  }
-  const route = [points[0].destination];
-  for (let i = 1; i < points.length; i++) {
-    if (points[i].destination !== points[i - 1].destination) {
-      route.push(points[i].destination);
-    }
-  }
+function createTripInfoTemplate({ dateRange, destinations, totalPrice }) {
+  return (
+    `<section class="trip-main__trip-info  trip-info">
+      <div class="trip-info__main">
+        <h1 class="trip-info__title">${destinations.length > DESTINATIONS_LENGTH_BORDER ? `${destinations[0]} &mdash; ... &mdash; ${destinations.at(-1)}` : destinations.join(' &mdash; ')}</h1>
 
-  if (route.length > 3) {
-    const startPoint = destinations.find((item) => item.id === route[0]);
-    const endPoint = destinations.find((item) => item.id === route[route.length - 1]);
-    return `${startPoint.name} &mdash; ... &mdash; ${endPoint.name}`;
-  }
+        <p class="trip-info__dates">${dateRange.startDate}&nbsp;&mdash;&nbsp;${dateRange.endDate}</p>
+      </div>
 
-  return route.map((destination) => `${destinations.find((item) => item.id === destination).name}`).join(' &mdash; ');
-
-};
-const renderDates = (points) => {
-  if (points.length === 0) {
-    return '';
-  }
-  const start = getDate(points[0].dateFrom);
-  const end = getDate(points[points.length - 1].dateTo);
-  return `${start}&nbsp;&mdash;&nbsp;${end}`;
-};
-
-const renderTotalPrice = (points, offers) => {
-  if (points.length === 0) {
-    return '';
-  }
-  let totalPrice = 0;
-  points.forEach((point) => {
-
-    if (offers.length === 0) {
-      return 0;
-    }
-    let pricePointOffers = 0;
-    const offersByType = offers.find((offer) => offer.type === point.type);
-    const pointOffers = point.offers;
-    pointOffers.forEach((offer) => {
-      pricePointOffers += offersByType.offers.find((item) => item.id === offer).price;
-    });
-    totalPrice += point.basePrice;
-    totalPrice += pricePointOffers;
-  });
-  return `Total: &euro;&nbsp;<span class="trip-info__cost-value">${totalPrice}</span>`;
-};
-
-const createTripInfoTemplate = (points, destinations, offers) => {
-  if (destinations.length === 0 || offers.length === 0) {
-    return '';
-  }
-  return `
-  <div class="trip-info"><div class="trip-info__main">
-    <h1 class="trip-info__title">${renderRouteTrip(points, destinations)}</h1>
-    <p class="trip-info__dates">${renderDates(points)}</p>
-  </div>
-  <p class="trip-info__cost">
-    ${renderTotalPrice(points, offers)}
-  </p>
-</div>`;
-};
+      <p class="trip-info__cost">
+        Total: &euro;&nbsp;<span class="trip-info__cost-value">${totalPrice}</span>
+      </p>
+    </section>`
+  );
+}
 
 export default class TripInfoView extends AbstractView {
-  #points = null;
-  #destinations = null;
-  #offers = null;
+  #pointModel = null;
+  #offerModel = null;
+  #destinationModel = null;
 
-  constructor(points, destinations, offers) {
+  #dateRange = null;
+  #destinations = null;
+  #totalPrice = null;
+
+  constructor(pointModel, offerModel, destinationModel) {
     super();
-    this.#points = points;
-    this.#destinations = destinations;
-    this.#offers = offers;
+    this.#pointModel = pointModel;
+    this.#offerModel = offerModel;
+    this.#destinationModel = destinationModel;
+    this.#dateRange = getPointsDataRange(this.#pointModel.points);
+    this.#destinations = getTripRoute(this.#pointModel.points, this.#destinationModel);
+    this.#totalPrice = getTripPrice(this.#pointModel.points, this.#offerModel);
   }
 
   get template() {
-    return createTripInfoTemplate(this.#points, this.#destinations, this.#offers);
+    return createTripInfoTemplate({
+      dateRange: this.#dateRange,
+      destinations: this.#destinations,
+      totalPrice: this.#totalPrice
+    });
   }
 }
