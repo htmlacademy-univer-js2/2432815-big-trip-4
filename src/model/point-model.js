@@ -1,97 +1,70 @@
-import Observable from '../framework/observable.js';
-import { UpdateType } from '../mock/constants.js';
+import { UpdateType } from '../mock/const';
+import Observable from '../framework/observable';
+import { adaptToClient } from '../utils/adapt';
+import { updateItem } from '../utils/common';
+import { sortByDay } from '../utils/point';
 
-export default class pointsModel extends Observable {
-  #pointsApiService = null;
-  #pointss = [];
+export default class PointModel extends Observable {
+  #points = [];
+  #pointApiService = null;
+  #isSuccessfulLoading = false;
 
-  constructor(pointsApiService) {
+  constructor(pointApiService) {
     super();
-    this.#pointsApiService = pointsApiService;
+    this.#pointApiService = pointApiService;
+    this.#points = [];
   }
 
   init = async () => {
     try {
-      const points = await this.#pointsApiService.points;
-      this.#pointss = points.map(this.#adaptToClient);
+      const points = await this.#pointApiService.points;
+      this.#points = points.map(adaptToClient);
+      this.#isSuccessfulLoading = true;
     } catch (err) {
-      this.#pointss = [];
+      this.#points = [];
+      this.#isSuccessfulLoading = false;
     }
 
     this._notify(UpdateType.INIT);
-
   };
 
   get points() {
-    return this.#pointss;
+    return this.#points.sort(sortByDay);
   }
 
-  updatePoint = async (updateType, update) => {
-    const index = this.#pointss.findIndex((point) => point.id === update.id);
+  get isSuccessfulLoading() {
+    return this.#isSuccessfulLoading;
+  }
 
-    if (index === -1) {
-      throw new Error('Can\'t update unexisting point');
-    }
-
+  async updatePoint(updateType, update) {
     try {
-      const response = await this.#pointsApiService.updatePoint(update);
-      const updatedPoint = this.#adaptToClient(response);
-      this.#pointss = [
-        ...this.#pointss.slice(0, index),
-        updatedPoint,
-        ...this.#pointss.slice(index + 1),
-      ];
-      this._notify(updateType, updatedPoint);
+      const response = await this.#pointApiService.updatePoint(update);
+      const updatePoint = adaptToClient(response);
+      this.#points = updateItem(this.#points, updatePoint);
+      this._notify(updateType, updatePoint);
     } catch (err) {
-      throw new Error('Can\'t update point');
+      throw new Error('Can\'t update task');
     }
-  };
+  }
 
-  addPoint = async (updateType, update) => {
+  async addPoint(updateType, update) {
     try {
-      const response = await this.#pointsApiService.addPoint(update);
-      const newPoint = this.#adaptToClient(response);
-      this.#pointss.unshift(newPoint);
+      const response = await this.#pointApiService.addPoint(update);
+      const newPoint = adaptToClient(response);
+      this.#points.push(newPoint);
       this._notify(updateType, newPoint);
     } catch (err) {
       throw new Error('Can\'t add point');
     }
-  };
+  }
 
-  deletePoint = async (updateType, update) => {
-    const index = this.#pointss.findIndex((point) => point.id === update.id);
-
-    if (index === -1) {
-      throw new Error('Can\'t delete unexisting point');
-    }
-
+  async deletePoint(updateType, update) {
     try {
-      await this.#pointsApiService.deletePoint(update);
-      this.#pointss = [
-        ...this.#pointss.slice(0, index),
-        ...this.#pointss.slice(index + 1),
-      ];
+      await this.#pointApiService.deletePoint(update);
+      this.#points = this.#points.filter((point) => point.id !== update.id);
       this._notify(updateType);
-    }
-    catch (err) {
+    } catch (err) {
       throw new Error('Can\'t delete point');
     }
-  };
-
-  #adaptToClient = (point) => {
-    const adaptedPoint = {
-      ...point,
-      basePrice: point['base_price'],
-      dateFrom: point['date_from'] !== null ? new Date(point['date_from']) : point['date_from'],
-      dateTo: point['date_to'] !== null ? new Date(point['date_to']) : point['date_to'],
-      isFavorite: point['is_favorite'],
-    };
-
-    delete adaptedPoint['base_price'];
-    delete adaptedPoint['date_from'];
-    delete adaptedPoint['date_to'];
-    delete adaptedPoint['is_favorite'];
-
-    return adaptedPoint;
-  };
+  }
 }
