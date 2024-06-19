@@ -1,3 +1,10 @@
-const isEscKeyDown = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+const isEscapeKey = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-export { isEscKeyDown };
+function updateItem(items, update) {
+  return items.map((item) => item.id === update.id ? update : item);
+}
+
+export {
+  updateItem,
+  isEscapeKey
+};
